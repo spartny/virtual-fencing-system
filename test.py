@@ -57,4 +57,3 @@ if __name__=="__main__":
 
 	# close the window 
 	cv2.destroyAllWindows() 
-ṇ

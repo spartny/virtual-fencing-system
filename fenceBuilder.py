@@ -66,7 +66,8 @@ def shape_selection(event, x, y, flags, param):
   
   
 
-image = cv2.imread('Virtual-Fencing-Home-Security-System\Images\cat_dog.jpg')
+# image = cv2.imread('Images/cat_dog.jpg')
+image = cv2.imread('Images/top-view-crowd.jpg')
 
 cv2.namedWindow("image") 
 cv2.setMouseCallback("image", shape_selection) 
