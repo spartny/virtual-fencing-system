@@ -11,6 +11,17 @@ edges = []
 preview = False
 imageClosed = False
 
+
+# method to draw the fence over the frame
+def drawFence(image):
+    file = open('fence.txt', 'r')
+    fence = eval(file.read())
+    file.close()
+    for edge in fence:
+        (x1, y1), (x2, y2) = edge
+        cv2.line(image, (x1, y1), (x2, y2), (0, 0, 255), 2)
+
+# method to check whether a given point is inside the fence or not
 def checkInside(xp, yp):
     file = open('fence.txt', 'r')
     fence = eval(file.read())
@@ -31,7 +42,6 @@ def checkInside(xp, yp):
 
 # method to build the virtual fence as per user input and save the fence
 # context as a .text file 
-
             
 def fenceBuild(image):
 
