@@ -44,11 +44,12 @@ def checkInside(xp, yp):
 # context as a .text file 
             
 def fenceBuild(image):
-
     def shape_selection(event, x, y, flags, param): 
-        global ref_points, crop, start, startPoint, imageClosed, edges, points, preview
+        
+        global ref_points, crop, start, startPoint,imageClosed, edges, points, preview
     
         if event == cv2.EVENT_LBUTTONDOWN:
+            print("imageClose", imageClosed)
             if(not imageClosed):
                 # preview = False
                 ref_points.append((x, y))
@@ -80,13 +81,15 @@ def fenceBuild(image):
                 if points[-1][0] in range(startPoint[0] - 5, startPoint[0] + 5) and points[-1][1] in range(startPoint[1] -5, startPoint[1] + 5) and len(points) != 1:
                     print("Image Closed")    
                     imageClosed = True
-            else:
-                file = open('fence.txt', 'w')
-                file.write(str(edges))
-                file.flush()
-                file.close()
-                cv2.putText(image, 'VIRTUAL FENCE DEFINED', (150, 300), cv2.FONT_HERSHEY_SIMPLEX , 1, (0,0,255), 2, cv2.LINE_AA)
-                return
+
+                    file = open('fence.txt', 'w')
+                    file.write(str(edges))
+                    file.flush()
+                    file.close()
+                    cv2.putText(image, 'VIRTUAL FENCE DEFINED', (150, 300), cv2.FONT_HERSHEY_SIMPLEX , 1, (0,0,255), 2, cv2.LINE_AA)
+                    return
+                
+                
 
     cv2.namedWindow("Virtual Fence Definition") 
     cv2.setMouseCallback("Virtual Fence Definition", shape_selection) 
