@@ -8,10 +8,16 @@ model = YOLO('yolov8m.pt')
 # Open the video file
 
 # home day time video
-video_path = "Videos\VIDEO_20240327_173849299.mp4"
+# video_path = "Videos\VIDEO_20240327_173849299.mp4"
 
 # home night time video
 #video_path = "Videos\VIRAT_S_010204_05_000856_000890.mp4"
+
+# multi angle video
+# video_path = "Videos\VIDEO1.mp4"
+
+# VIRAT dataset video
+video_path = "Videos\VIRAT_S_010204_05_000856_000890.mp4"
 
 
 cap = cv2.VideoCapture(video_path)
