@@ -11,7 +11,7 @@ model = YOLO('yolov8m.pt')
 # video_path = "Videos\VIDEO_20240327_173849299.mp4"
 
 # home night time video
-# video_path = "Videos\VIDEO_20240327_173517186.mp4"
+#video_path = "Videos\VIRAT_S_010204_05_000856_000890.mp4"
 
 # multi angle video
 # video_path = "Videos\VIDEO1.mp4"
@@ -51,17 +51,18 @@ while cap.isOpened():
                 center_y = int((y_min + y_max) / 2)
                 
                 # visualize the center of bounding box
-                cv2.circle(frame, (center_x, center_y), 1, (0, 0, 255), 5)
+                cv2.circle(frame, (center_x, center_y), 1, (0,255,0), 5)
                 if outcome == False:
 
                     # checking whether centroid is inside of fence
                     outcome = checkInside(center_x, center_y)
 
             if outcome:
+                color = (0, 0, 255)
                 cv2.putText(frame, 'BREACH', (300, 300), cv2.FONT_HERSHEY_SIMPLEX , 5, (0,0,255), 5, cv2.LINE_AA)
             else:
+                color = (0, 255, 0)
                 cv2.putText(frame, 'NO BREACH', (300, 300), cv2.FONT_HERSHEY_SIMPLEX , 5, (0,255,0), 5, cv2.LINE_AA)
-            
             # Visualize the results on the frame
             annotated_frame = results[0].plot()
 
