@@ -3,7 +3,7 @@ from ultralytics import YOLO
 from fenceBuilder import checkInside, fenceBuild, drawFence
 
 # Load the YOLOv8 model
-model = YOLO('yolov8m.pt')
+model = YOLO('yolov8x.pt')
 
 # Open the video file
 
@@ -14,11 +14,12 @@ model = YOLO('yolov8m.pt')
 #video_path = "Videos\VIRAT_S_010204_05_000856_000890.mp4"
 
 # multi angle video
-# video_path = "Videos\VIDEO1.mp4"
+# video_path = "Videos\VIDEO4.mp4"
 
 # VIRAT dataset video
-video_path = "Videos\VIRAT_S_010204_05_000856_000890.mp4"
+# video_path = "Videos\VIRAT_S_010204_05_000856_000890.mp4"
 
+video_path = "Videos\\anuj_imposter.mp4"
 
 cap = cv2.VideoCapture(video_path)
 
@@ -45,13 +46,14 @@ while cap.isOpened():
             outcome = False
             for box in boxes:
 
-                # calculating the center of the bounding boxes
+                # calculating the feet of the bounding boxes
                 x_min, y_min, x_max, y_max = box
                 center_x = int((x_min + x_max) / 2)
-                center_y = int((y_min + y_max) / 2)
-                
+                center_y = int(y_max)
+                # center_y = int((2 * y_min * y_max )/ (y_min + y_max) 
+
                 # visualize the center of bounding box
-                cv2.circle(frame, (center_x, center_y), 1, (0,255,0), 5)
+                cv2.circle(frame, (center_x, center_y), 7, (0,255,0), 8)
                 if outcome == False:
 
                     # checking whether centroid is inside of fence

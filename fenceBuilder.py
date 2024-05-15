@@ -19,7 +19,7 @@ def drawFence(image):
     file.close()
     for edge in fence:
         (x1, y1), (x2, y2) = edge
-        cv2.line(image, (x1, y1), (x2, y2), (0, 0, 255), 2)
+        cv2.line(image, (x1, y1), (x2, y2), (0, 255, 255), 2)
 
 # method to check whether a given point is inside the fence or not
 def checkInside(xp, yp):
@@ -62,7 +62,7 @@ def fenceBuild(image):
                 else:
                     ref_points.append((x, y)) 
 
-                    cv2.line(image, ref_points[0], ref_points[1], (0, 0, 255), 2)
+                    cv2.line(image, ref_points[0], ref_points[1], (0, 255, 255), 2)
                     print(ref_points)
                     
                     prevPoint = ref_points[1]
