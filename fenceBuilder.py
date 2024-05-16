@@ -86,7 +86,7 @@ def fenceBuild(image):
                     file.write(str(edges))
                     file.flush()
                     file.close()
-                    cv2.putText(image, 'VIRTUAL FENCE DEFINED', (150, 300), cv2.FONT_HERSHEY_SIMPLEX , 1, (0,0,255), 2, cv2.LINE_AA)
+                    # cv2.putText(image, 'VIRTUAL FENCE DEFINED', (150, 300), cv2.FONT_HERSHEY_SIMPLEX , 1, (0,0,255), 2, cv2.LINE_AA)
                     return
                 
                 
