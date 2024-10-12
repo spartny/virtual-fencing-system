@@ -44,9 +44,10 @@ def checkInside(xp, yp):
 # context as a .text file 
             
 def fenceBuild(image):
+    imageClosed = False
     def shape_selection(event, x, y, flags, param): 
         
-        global ref_points, crop, start, startPoint,imageClosed, edges, points, preview
+        global ref_points, crop, start, startPoint, edges, points, preview, imageClosed
     
         if event == cv2.EVENT_LBUTTONDOWN:
             print("imageClose", imageClosed)
