@@ -1,5 +1,6 @@
 import cv2 
-  
+import math
+
 # initialize the list of reference point 
 ref_points = [] 
 crop = False
@@ -22,10 +23,44 @@ def drawFence(image):
         cv2.line(image, (x1, y1), (x2, y2), (0, 255, 255), 2)
 
 # method to check whether a given point is inside the fence or not
-def checkInside(xp, yp):
-    file = open('fence.txt', 'r')
-    fence = eval(file.read())
-    file.close()
+def checkInside(xp, yp, fence, track_id, past_coordinates, danger_vector=270.0, tolerance=95.0):
+    """
+    Determines whether a given point (xp, yp) is inside a defined fence (polygon) 
+    and checks the direction of movement based on the object's angle vector.
+    
+    This function performs two main tasks:
+    
+    1. **Point-in-Polygon Check**: 
+       It uses the ray-casting algorithm to determine whether a point lies inside a polygon.
+       The polygon (fence) is stored in a file ('fence.txt') and is dynamically read during execution.
+
+    2. **Direction Check**: 
+       If the point is inside the fence, it calculates the object's angle vector using the past 
+       coordinates of the object (identified by `track_id`). It then compares the angle vector to a 
+       predefined `danger_vector` (default is 270 degrees) and checks whether the object is moving 
+       within the dangerous angle range (± `tolerance` degrees).
+
+    Args:
+        xp (int): The x-coordinate of the point (usually the foot of the bounding box).
+        yp (int): The y-coordinate of the point.
+        track_id (int or tensor): Unique identifier for the tracked object.
+        past_coordinates (dict): Dictionary storing past coordinates for each track_id.
+        danger_vector (float, optional): The direction of movement considered dangerous (default is 270 degrees).
+        tolerance (float, optional): A value that ± of the danger_vector is considered as a slice that is dangerous.
+        
+    Returns:
+        bool: 
+            - `True` if the point is inside the fence and the object is moving within the dangerous angle range.
+            - `False` if the point is outside the fence or moving outside the dangerous angle range.
+
+    Raises:
+        ValueError: If there is an issue with the data or angle calculation.
+    
+    Notes:
+        - The fence data is expected to be a list of edge coordinates and is loaded from 'fence.txt'.
+        - Ensure that the past coordinates are being updated properly in the calling code to maintain accurate tracking.
+    """
+    
     cnt = 0
     result = None
     for edge in fence:
@@ -33,10 +68,13 @@ def checkInside(xp, yp):
         if (yp < y1) != (yp < y2) and xp < x1 + ((yp-y1)/(y2-y1))*(x2-x1):
             cnt += 1
     if cnt % 2 == 1:
-        print("INSIDE")
-        result = True
+        angle_vector = calculate_angle_vector(track_id, past_coordinates)
+        print(angle_vector)
+        if ((danger_vector - tolerance) <= angle_vector <= (danger_vector + tolerance)):
+            # print("INSIDE")
+            result = True
     else:
-        print('OUTSIDE')
+        # print('OUTSIDE')
         result = False
     return result
 
@@ -44,7 +82,6 @@ def checkInside(xp, yp):
 # context as a .text file 
             
 def fenceBuild(image):
-    imageClosed = False
     def shape_selection(event, x, y, flags, param): 
         
         global ref_points, crop, start, startPoint, edges, points, preview, imageClosed
@@ -64,23 +101,23 @@ def fenceBuild(image):
                     ref_points.append((x, y)) 
 
                     cv2.line(image, ref_points[0], ref_points[1], (0, 255, 255), 2)
-                    print(ref_points)
+                    # print(ref_points)
                     
                     prevPoint = ref_points[1]
                     ref_points = []
-                    print("POINTS",points)
+                    # print("POINTS",points)
                     ref_points.append(prevPoint)
-                    print(startPoint)
+                    # print(startPoint)
                     cv2.imshow("Virtual Fence Definition", image) 
                     # preview = True
                 
                 if len(points) >= 2:
                     edge = (points[-2], points[-1])
                     edges.append(edge)
-                    print("EDGES", edges)
+                    # print("EDGES", edges)
                 
                 if points[-1][0] in range(startPoint[0] - 5, startPoint[0] + 5) and points[-1][1] in range(startPoint[1] -5, startPoint[1] + 5) and len(points) != 1:
-                    print("Image Closed")    
+                    print("Fence Built!")    
                     imageClosed = True
 
                     file = open('fence.txt', 'w')
@@ -96,9 +133,79 @@ def fenceBuild(image):
     cv2.setMouseCallback("Virtual Fence Definition", shape_selection) 
     cv2.imshow('Virtual Fence Definition', image)
     cv2.waitKey(0)
-# image = cv2.imread('Images/cat_dog.jpg')
-# image = cv2.imread('Images\\parking-lot.jpg')
-# image = cv2.imread('Images\\exported frames\\day_frame_880.jpg')
+
+
+def update_coordinates(track_id, current_coords, past_coordinates):
+    """
+    Update the past coordinates for a given track ID.
+
+    Parameters:
+        track_id (int): The ID of the tracked object.
+        current_coords (tuple): The (x, y) coordinates of the current position.
+        past_coordinates (dict): A dictionary to keep track of past coordinates.
+
+    Returns:
+        None
+    """
+
+    # Convert the tensor track_id to an integer
+    track_id_int = int(track_id.item()) if track_id is not None else 'None' 
+
+    if track_id_int not in past_coordinates:
+        # Initialize with an empty list for two previous coordinates
+        past_coordinates[track_id_int] = []
+    
+    # Update past coordinates, keeping only the last two entries
+    past_coordinates[track_id_int].append(current_coords)
+    if len(past_coordinates[track_id_int]) > 2:
+        past_coordinates[track_id_int].pop(0)  # Keep only the last two coordinates
+
+
+
+def calculate_angle_vector(track_id, past_coordinates, reference='x'):
+    """
+    Calculate the angle vector based on the track ID using past coordinates.
+
+    Parameters:
+        track_id (int): The ID of the tracked object.
+        past_coordinates (dict): A dictionary to keep track of past coordinates.
+        reference (str): The reference direction for angle calculation ('x' for positive x-axis or 'y' for positive y-axis).
+
+    Returns:
+        float: The angle in degrees with respect to the specified reference direction.
+    """
+
+    # Convert the tensor track_id to an integer
+    track_id_int = int(track_id.item()) if track_id is not None else 'None' 
+
+    # Check if the track ID has at least two sets of coordinates
+    if track_id_int not in past_coordinates or len(past_coordinates[track_id_int]) < 2:
+        return -1.0
+
+    else:
+        # Get the previous and current coordinates
+        previous_coords = past_coordinates[track_id_int][0]  # Oldest coordinates
+        current_coords = past_coordinates[track_id_int][1]   # Latest coordinates
+    
+    # Calculate the change in coordinates
+    dx = current_coords[0] - previous_coords[0]
+    dy = current_coords[1] - previous_coords[1]
+    
+    if reference == 'x':
+        # Calculate angle with respect to positive X-axis
+        angle = math.atan2(dy, dx)  # Result in radians
+    elif reference == 'y':
+        # Calculate angle with respect to positive Y-axis
+        angle = math.atan2(dx, dy)  # Swap dx and dy
+    else:
+        raise ValueError("Reference must be 'x' or 'y'")
+
+    # Convert angle to degrees and normalize to [0, 360) degrees
+    angle_degrees = math.degrees(angle) % 360
+    
+    return angle_degrees
+
+ 
 
 if '__name__' == "__main__":
     print("main")
