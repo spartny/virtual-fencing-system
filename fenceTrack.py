@@ -17,13 +17,13 @@ print(f'Using device: {device}')
 # video_path = "Videos\\VIDEO_20240327_173517186.mp4"
 
 # multi angle video
-# video_path = "Videos\\VIDEO4.mp4"
+video_path = "Videos\\VIDEO4.mp4"
 
 # VIRAT dataset video
 # video_path = "Videos\\VIRAT_S_010204_05_000856_000890.mp4"
 
 # Nighttime Video
-video_path = "Videos\\NighttimeVideo.mp4"
+# video_path = "Videos\\NighttimeVideo.mp4"
 
 # load the YOLOv11m model
 model = YOLO('yolov8m.pt').to(device)
@@ -88,7 +88,7 @@ while cap.isOpened():
                     if outcome == False:
 
                         # checking whether centroid is inside of fence
-                        outcome = checkInside(foot_x, foot_y, fence, track_id, past_coordinates, danger_vector=180)
+                        outcome = checkInside(foot_x, foot_y, fence, track_id, past_coordinates, danger_vector=270)
 
             if outcome:
                 color = (0, 0, 255)

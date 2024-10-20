@@ -70,7 +70,7 @@ def checkInside(xp, yp, fence, track_id, past_coordinates, danger_vector=270.0, 
     if cnt % 2 == 1:
         angle_vector = calculate_angle_vector(track_id, past_coordinates)
         print(angle_vector)
-        if ((danger_vector - tolerance) <= angle_vector <= (danger_vector + tolerance)):
+        if ((danger_vector - tolerance) <= angle_vector ) and (angle_vector <= (danger_vector + tolerance)):
             # print("INSIDE")
             result = True
     else:
@@ -157,7 +157,7 @@ def update_coordinates(track_id, current_coords, past_coordinates):
     
     # Update past coordinates, keeping only the last two entries
     past_coordinates[track_id_int].append(current_coords)
-    if len(past_coordinates[track_id_int]) > 2:
+    if len(past_coordinates[track_id_int]) > 10:
         past_coordinates[track_id_int].pop(0)  # Keep only the last two coordinates
 
 
@@ -176,33 +176,41 @@ def calculate_angle_vector(track_id, past_coordinates, reference='x'):
     """
 
     # Convert the tensor track_id to an integer
-    track_id_int = int(track_id.item()) if track_id is not None else 'None' 
+    track_id_int = int(track_id.item()) if track_id is not None else 'None'
 
     # Check if the track ID has at least two sets of coordinates
     if track_id_int not in past_coordinates or len(past_coordinates[track_id_int]) < 2:
         return -1.0
 
-    else:
-        # Get the previous and current coordinates
-        previous_coords = past_coordinates[track_id_int][0]  # Oldest coordinates
-        current_coords = past_coordinates[track_id_int][1]   # Latest coordinates
+    # Get the available coordinates (up to 5)
+    coords = past_coordinates[track_id_int][-10:]  # Only take the last 5 coordinates if available
     
-    # Calculate the change in coordinates
-    dx = current_coords[0] - previous_coords[0]
-    dy = current_coords[1] - previous_coords[1]
-    
+    # Initialize the total change in coordinates
+    total_dx, total_dy = 0, 0
+
+    # Calculate the sum of differences for all available coordinate pairs
+    for i in range(1, len(coords)):
+        previous_coords = coords[i-1]
+        current_coords = coords[i]
+        total_dx += current_coords[0] - previous_coords[0]
+        total_dy += current_coords[1] - previous_coords[1]
+
+    # Calculate the average change in coordinates
+    avg_dx = total_dx / (len(coords) - 1)
+    avg_dy = total_dy / (len(coords) - 1)
+
     if reference == 'x':
         # Calculate angle with respect to positive X-axis
-        angle = math.atan2(dy, dx)  # Result in radians
+        angle = math.atan2(avg_dy, avg_dx)  # Result in radians
     elif reference == 'y':
         # Calculate angle with respect to positive Y-axis
-        angle = math.atan2(dx, dy)  # Swap dx and dy
+        angle = math.atan2(avg_dx, avg_dy)  # Swap dx and dy for Y-axis reference
     else:
         raise ValueError("Reference must be 'x' or 'y'")
 
     # Convert angle to degrees and normalize to [0, 360) degrees
     angle_degrees = math.degrees(angle) % 360
-    
+
     return angle_degrees
 
  
