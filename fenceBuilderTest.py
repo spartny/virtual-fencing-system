@@ -8,7 +8,9 @@ start = True
 startPoint = []
 points = []
 edges = []
-
+# from docx import Document
+# doc = Document()
+doc = open("outputs.txt", 'w')
 preview = False
 imageClosed = False
 
@@ -23,7 +25,7 @@ def drawFence(image):
         cv2.line(image, (x1, y1), (x2, y2), (0, 255, 255), 2)
 
 # method to check whether a given point is inside the fence or not
-def checkInside(xp, yp, fence, track_id, past_coordinates, past_outcomes, danger_vector=270.0, tolerance=45.0):
+def checkInside(xp, yp, track_id, fence, angle_vector, danger_vector=180.0, tolerance=5.0):
     """
     Determines whether a given point (xp, yp) is inside a defined fence (polygon) 
     and checks the direction of movement based on the object's angle vector.
@@ -45,7 +47,6 @@ def checkInside(xp, yp, fence, track_id, past_coordinates, past_outcomes, danger
         yp (int): The y-coordinate of the point.
         track_id (int or tensor): Unique identifier for the tracked object.
         past_coordinates (dict): Dictionary storing past coordinates for each track_id.
-        past_outcomes (dict): Dictionary that stores the past outcomes for each track_id, breach or no breach.
         danger_vector (float, optional): The direction of movement considered dangerous (default is 270 degrees).
         tolerance (float, optional): A value that ± of the danger_vector is considered as a slice that is dangerous.
         
@@ -64,21 +65,25 @@ def checkInside(xp, yp, fence, track_id, past_coordinates, past_outcomes, danger
     
     cnt = 0
     result = None
-
     for edge in fence:
         (x1, y1), (x2, y2) = edge
-
-        if (yp < y1) != (yp < y2) and xp < x1 + ((yp - y1) / (y2 - y1)) * (x2 - x1):
+        if (yp < y1) != (yp < y2) and xp < x1 + ((yp-y1)/(y2-y1))*(x2-x1):
             cnt += 1
-
     if cnt % 2 == 1:
-        angle_vector = calculate_angle_vector(track_id, past_coordinates)
-        
-        if ((danger_vector - tolerance) >= angle_vector ) and (angle_vector >= (danger_vector + tolerance)):
+        #angle_vector = calculate_angle_vector(track_id, past_coordinates)
+        # 175 <= angle <= 365 
+        print(track_id, "Reached angle vector 175 <= angle <= 185", angle_vector)
+        angle_message = f"{track_id} Reached angle vector 175 <= angle <= 185, Angle Vector: {int(angle_vector)}"
+        doc.write("\n" + angle_message)
+        if ((danger_vector - tolerance) <= int(angle_vector) ) and (int(angle_vector) <= (danger_vector + tolerance)):
+            print("INSIDE")
+            inside_message = "INSIDE"
+            doc.write("\n" + inside_message)
             result = True
     else:
+        # print('OUTSIDE')
         result = False
-
+    doc.flush()
     return result
 
 # method to build the virtual fence as per user input and save the fence
@@ -144,7 +149,7 @@ def update_coordinates(track_id, current_coords, past_coordinates):
 
     Parameters:
         track_id (int): The ID of the tracked object.
-        current_coords (list): A list of 15 (x, y) coordinate pairs for the current position.
+        current_coords (tuple): The (x, y) coordinates of the current position.
         past_coordinates (dict): A dictionary to keep track of past coordinates.
 
     Returns:
@@ -152,26 +157,22 @@ def update_coordinates(track_id, current_coords, past_coordinates):
     """
 
     # Convert the tensor track_id to an integer
-    track_id_int = int(track_id.item()) if track_id is not None else None
+    track_id_int = int(track_id.item()) if track_id is not None else 'None' 
 
     if track_id_int not in past_coordinates:
-        # Initialize with an empty list to store the history of coordinate lists
+        # Initialize with an empty list for two previous coordinates
         past_coordinates[track_id_int] = []
     
-    # Append the current list of 15 coordinates to the track's history
+    # Update past coordinates, keeping only the last two entries
     past_coordinates[track_id_int].append(current_coords)
-    
-    # Ensure only the last 10 lists are kept
-    if len(past_coordinates[track_id_int]) > 10:
-        past_coordinates[track_id_int].pop(0)
+    if len(past_coordinates[track_id_int]) > 75:
+        past_coordinates[track_id_int].pop(0)  # Keep only the last two coordinates
 
 
-
-import math
 
 def calculate_angle_vector(track_id, past_coordinates, reference='x'):
     """
-    Calculate the angle vector change based on the track ID using past coordinates.
+    Calculate the angle vector based on the track ID using past coordinates.
 
     Parameters:
         track_id (int): The ID of the tracked object.
@@ -183,34 +184,34 @@ def calculate_angle_vector(track_id, past_coordinates, reference='x'):
     """
 
     # Convert the tensor track_id to an integer
-    track_id_int = int(track_id.item()) if track_id is not None else None
+    track_id_int = int(track_id.item()) if track_id is not None else 'None'
 
-    # Check if the track ID has at least two timesteps of coordinates
+    # Check if the track ID has at least two sets of coordinates
     if track_id_int not in past_coordinates or len(past_coordinates[track_id_int]) < 2:
         return -1.0
 
-    # Retrieve the last two timesteps of 15 coordinates each
-    coords_previous = past_coordinates[track_id_int][-2]  # Second last timestep
-    coords_current = past_coordinates[track_id_int][-1]   # Last timestep
-
-    # Initialize total change in coordinates
+    # Get the available coordinates (up to 5)
+    coords = past_coordinates[track_id_int]  # Only take the last 10 coordinates if available
+    
+    # Initialize the total change in coordinates
     total_dx, total_dy = 0, 0
 
-    # Sum up the changes in x and y coordinates for all 15 points
-    for (x1, y1), (x2, y2) in zip(coords_previous, coords_current):
-        total_dx += x2 - x1
-        total_dy += y2 - y1
+    # Calculate the sum of differences for all available coordinate pairs
+    for i in range(1, len(coords)):
+        previous_coords = coords[i-1]
+        current_coords = coords[i]
+        total_dx += current_coords[0] - previous_coords[0]
+        total_dy += current_coords[1] - previous_coords[1]
 
-    # Calculate the average change in x and y coordinates
-    avg_dx = total_dx / len(coords_current)
-    avg_dy = total_dy / len(coords_current)
+    # Calculate the average change in coordinates
+    avg_dx = total_dx / (len(coords) - 1)
+    avg_dy = total_dy / (len(coords) - 1)
 
-    # Determine the angle based on the reference axis
     if reference == 'x':
-        # Calculate angle with respect to the positive X-axis
+        # Calculate angle with respect to positive X-axis
         angle = math.atan2(avg_dy, avg_dx)  # Result in radians
     elif reference == 'y':
-        # Calculate angle with respect to the positive Y-axis
+        # Calculate angle with respect to positive Y-axis
         angle = math.atan2(avg_dx, avg_dy)  # Swap dx and dy for Y-axis reference
     else:
         raise ValueError("Reference must be 'x' or 'y'")

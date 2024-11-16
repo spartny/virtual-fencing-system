@@ -1,0 +1,217 @@
+
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 178
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 177
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 179
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 179
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 181
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 193
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 191
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 183
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 176
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 176
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 179
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 177
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 180
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 178
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 174
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 175
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 166
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 164
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 194
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 194
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 185
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 186
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 189
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 183
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 182
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 182
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 182
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 179
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 178
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 179
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 179
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 169
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 168
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 143
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 120
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 167
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 235
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 231
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 232
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 191
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 194
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 184
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 180
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 176
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 175
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 171
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 174
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 174
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 173
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 173
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 175
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 171
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 169
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 166
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 189
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 196
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 194
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 200
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 196
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 190
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 182
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 178
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 170
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 174
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 173
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 176
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 176
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 173
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 168
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 192
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 189
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 185
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 186
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 184
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 184
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 180
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 180
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 179
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 177
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 171
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 174
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 174
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 175
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 178
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 166
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 191
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 186
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 190
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 189
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 190
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 191
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 191
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 182
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 180
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 180
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 175
+INSIDE
+tensor([1.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 175
+INSIDE
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 238
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 236
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 233
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 145
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 147
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 168
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 168
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 150
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 164
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 236
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 235
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 235
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 233
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 235
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 234
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 236
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 123
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 103
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 106
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 62
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 62
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 106
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 63
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 68
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 114
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 68
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 65
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 125
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 121
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 191
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 236
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 189
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 190
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 191
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 213
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 238
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 235
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 235
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 166
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 145
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 124
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 128
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 129
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 127
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 125
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 121
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 237
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 237
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 192
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 102
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 104
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 105
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 61
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 107
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 126
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 126
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 59
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 63
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 69
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 76
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 86
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 121
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 128
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 121
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 192
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 190
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 120
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 238
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 237
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 120
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 120
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 191
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 83
+tensor([2.]) Reached angle vector 175 <= angle <= 185, Angle Vector: 84
