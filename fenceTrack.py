@@ -25,14 +25,18 @@ print(f'Using device: {device}')
 # Nighttime Video
 video_path = "Videos\\NighttimeVideo.mp4"
 
+# video_path = "Videos\\anuj_imposter.mp4"
+
 # load the YOLOv11m model
-model = YOLO('yolov8m.pt').to(device)
+model = YOLO('yolo11m.pt').to(device)
 cap = cv2.VideoCapture(video_path)
 
 frame_count = 0
 
 past_coordinates = dict()
 past_outcomes = dict()
+
+fence_state = list()
 
 # loop through the video frames
 while cap.isOpened():
@@ -47,8 +51,8 @@ while cap.isOpened():
         frame_count += 1
 
         # every 20th frame is put through the YOLOv8 model
-        # if frame_count % 10 == 0:
-        if frame_count:
+        if frame_count % 2 == 0:
+        # if frame_count:
             # draw fence over the frame
             drawFence(frame)
 
@@ -58,7 +62,7 @@ while cap.isOpened():
             file.close()
             
             # run YOLO inference on the frame
-            results = model.track(frame, conf=0.4, classes=[0], persist=True, tracker="bytetrack.yaml")
+            results = model.track(frame, classes=[0], persist=True, tracker="bytetrack.yaml")
             
             for result in results:
                 boxes = result.boxes
@@ -108,12 +112,21 @@ while cap.isOpened():
                     # for point in current_points:
                     #      cv2.circle(annotated_frame, point, 1, (0,255,0), 3)
                     
-                    if outcome == False:
+                    # if outcome == False:
 
-                        # checking whether centroid is inside of fence
-                        outcome = checkInside(foot_x, foot_y, fence, track_id, past_coordinates, past_outcomes, danger_vector=180)
-        
-
+                    # checking whether centroid is inside of fence
+                    result = checkInside(foot_x, foot_y, fence, track_id, past_coordinates, past_outcomes, danger_vector=180)
+                    if result is True:
+                        outcome = True
+                    elif len(fence_state) >= 5 and result is False:
+                        # print(fence_state)
+                        if all(fence_state) is True:
+                            outcome = True
+                        fence_state = fence_state[len(fence_state) - 4 : ]
+                    else:
+                        outcome = False
+                        
+            fence_state.append(outcome)
             if outcome:
                 color = (0, 0, 255)
                 cv2.putText(annotated_frame, 'BREACH', (text_dim, text_dim), cv2.FONT_HERSHEY_SIMPLEX , 2, (0,0,255), 2, cv2.LINE_AA)

@@ -23,7 +23,7 @@ def drawFence(image):
         cv2.line(image, (x1, y1), (x2, y2), (0, 255, 255), 2)
 
 # method to check whether a given point is inside the fence or not
-def checkInside(xp, yp, fence, track_id, past_coordinates, past_outcomes, danger_vector=270.0, tolerance=45.0):
+def checkInside(xp, yp, fence, track_id, past_coordinates, past_outcomes, danger_vector=270.0, tolerance=90.0):
     """
     Determines whether a given point (xp, yp) is inside a defined fence (polygon) 
     and checks the direction of movement based on the object's angle vector.
@@ -63,23 +63,28 @@ def checkInside(xp, yp, fence, track_id, past_coordinates, past_outcomes, danger
     """
     
     cnt = 0
-    result = None
+    breach_detected = False  # Default breach state
 
     for edge in fence:
         (x1, y1), (x2, y2) = edge
-
         if (yp < y1) != (yp < y2) and xp < x1 + ((yp - y1) / (y2 - y1)) * (x2 - x1):
             cnt += 1
-
     if cnt % 2 == 1:
         angle_vector = calculate_angle_vector(track_id, past_coordinates)
-        
-        if ((danger_vector - tolerance) >= angle_vector ) and (angle_vector >= (danger_vector + tolerance)):
-            result = True
-    else:
-        result = False
 
-    return result
+        if angle_vector == -1.0:  # No new angle vector is generated
+            # Default to the past breach state if available
+            breach_detected = past_outcomes.get(track_id, False)
+        else:
+
+            # Check if the angle is within the danger range
+            if ((danger_vector - tolerance) <= angle_vector ) and (angle_vector <= (danger_vector + tolerance)):
+                breach_detected = True
+    else:
+        breach_detected = False
+
+    past_outcomes[track_id] = breach_detected
+    return breach_detected
 
 # method to build the virtual fence as per user input and save the fence
 # context as a .text file 
